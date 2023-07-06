@@ -14,4 +14,24 @@ describe LinkedList do
         end
     end
 
+    describe "#append" do
+        it "Adds a Node object to the end of LinkedList" do
+            list.append("doop")
+
+            expect(list.head.data).to eq("doop")
+            expect(list.head.next_node).to eq(nil)
+        end
+    end
+
+    descirbe "#count" do
+        it "can count the number of nodes in the list" do
+            expect(list.count).to eq
+        end
+    end
+
+    descirbe "#to_string" do
+        it "combine nodes to form 1 string" do
+            expect(list.to_string).to eq("doop")
+        end
+    end
 end
