@@ -4,7 +4,7 @@ require './lib/linked_list'
 describe LinkedList do
     list = LinkedList.new
 
-    desribe "#initialize" do
+    describe "#initialize" do
         it "exists as LinkedList object" do
             expect(list).to be_a(LinkedList)
         end
@@ -13,5 +13,5 @@ describe LinkedList do
             expect(list.head).to eq(nil)
         end
     end
-    
+
 end
