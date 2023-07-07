@@ -107,4 +107,31 @@ describe LinkedList do
             expect(list.insert(3, "woo")).to eq("Index out of range")
         end
     end
+
+    describe "#find" do
+        it "return the data from Node at index(x) and (y) nodes after" do
+            list = LinkedList.new
+
+            list.append("deep")
+            list.append("woo")
+            list.append("shi")
+            list.append("shu")
+            list.append("blop")
+            
+            expect(list.find(2, 1)).to eq("shi")
+            expect(list.find(1, 3)).to eq("woo shi shu")
+        end 
+
+        it "returns No elements in list when find called on empty list" do
+            list = LinkedList.new
+
+            expect(list.find(1,2)).to eq("No elements in list")
+        end
+        it "returns error when index out of range" do
+            list = LinkedList.new
+            list.append("deep")
+
+            expect(list.find(3, 1)).to eq("Index out of range")
+        end 
+    end 
 end

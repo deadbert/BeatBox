@@ -69,4 +69,23 @@ class LinkedList
             "Index out of range"
         end
     end
+
+    def find(index, num_nodes)
+        return "No elements in list" if @head == nil
+        return "Index out of range" if count < index
+        current_node = @head
+        count = 0
+        element_count = 0
+        output = ""
+        until index == count do
+            current_node = current_node.next_node
+            count += 1
+        end
+        until num_nodes == element_count
+            output << current_node.data + " "
+            current_node = current_node.next_node
+            element_count += 1
+        end
+        output.strip
+    end
 end 
