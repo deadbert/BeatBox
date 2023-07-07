@@ -46,10 +46,29 @@ describe LinkedList do
     end
 
     describe "#to_string" do
-        list = LinkedList.new
 
-        xit "combine nodes to form 1 string" do
-            expect(list.to_string).to eq("doop")
+        it "combine nodes to form 1 string" do
+            list = LinkedList.new
+
+            list.append("doop")
+            list.append("woop")
+            list.append("pop")
+
+            expect(list.to_string).to eq("doop woop pop")
+        end
+
+        it "can return empty string from empty list" do
+            list = LinkedList.new
+
+            expect(list.to_string).to eq("")
+        end
+
+        it "can return string when only 1 data node on list" do
+            list = LinkedList.new
+
+            list.append("doop")
+
+            expect(list.to_string).to eq ("doop")
         end
     end
 end

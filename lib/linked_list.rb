@@ -38,10 +38,10 @@ class LinkedList
     def to_string
         output_list = ""
         current_node = @head
-        # method gets hung up here right now when entering
-        # the while loop. 
+        return "" if current_node == nil
         until current_node.next_node == nil do
-            output_list << current_node.data
+            output_list << current_node.data + " "
+            current_node = current_node.next_node
         end
         output_list << current_node.data
     end
