@@ -52,4 +52,21 @@ class LinkedList
         @head = new_node
     end
 
-end
+    def insert(index, data)
+        new_node = Node.new(data)
+        if @head == nil && index == 0
+            return @head = new_node
+        elsif @head.is_a? Node
+            current_node = @head
+            count = 0
+            until (index - 1) == count do
+                current_node = current_node.next_node
+                count += 1
+            end
+            new_node.next_node = current_node.next_node
+            current_node.next_node = new_node
+        else
+            "Index out of range"
+        end
+    end
+end 
