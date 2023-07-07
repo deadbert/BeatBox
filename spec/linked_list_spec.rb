@@ -71,4 +71,16 @@ describe LinkedList do
             expect(list.to_string).to eq ("doop")
         end
     end
+
+    describe "#prepend" do
+        it "Add node to the beginning of the list" do
+            list = LinkedList.new
+
+            list.append("doop")
+            expect(list.head.data).to eq("doop")
+            list.prepend("woop")
+            expect(list.head.data).to eq("woop")
+            expect(list.head.next_node.data).to eq("doop")
+        end
+    end
 end

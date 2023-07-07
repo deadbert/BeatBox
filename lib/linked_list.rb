@@ -46,4 +46,10 @@ class LinkedList
         output_list << current_node.data
     end
 
+    def prepend(data)
+        new_node = Node.new(data)
+        new_node.next_node = @head
+        @head = new_node
+    end
+
 end
