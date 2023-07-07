@@ -100,4 +100,16 @@ class LinkedList
         end
         current_node.data == data ? true : false
     end
+
+    def pop
+        return "No elements in list" if @head == nil
+        current_node = @head
+        list_count = count
+        current_index = 0
+        until current_index == (list_count - 2) do 
+            current_node = current_node.next_node
+            current_index += 1
+        end
+        current_node.next_node = nil
+    end
 end 
