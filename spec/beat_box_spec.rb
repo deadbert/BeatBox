@@ -14,7 +14,7 @@ describe BeatBox do
   end
 
   describe "#append" do
-    it "split string and append words as individual nodes to list"
+    it "split string and append words as individual nodes to list" do
       bb = BeatBox.new
 
       bb.append("deep doo ditt")
