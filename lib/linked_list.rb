@@ -17,14 +17,6 @@ class LinkedList
         end
     end
 
-    def search_nodes
-        current_node = @head
-        until current_node.next_node == nil do
-            current_node = current_node.next_node
-        end
-        current_node
-    end
-
     def count
         count = @head == nil ? (return 0) : 1
         current_node = @head
