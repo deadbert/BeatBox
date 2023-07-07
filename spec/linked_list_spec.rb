@@ -2,9 +2,10 @@ require 'rspec'
 require './lib/linked_list'
 
 describe LinkedList do
-    list = LinkedList.new
 
     describe "#initialize" do
+        list = LinkedList.new
+
         it "exists as LinkedList object" do
             expect(list).to be_a(LinkedList)
         end
@@ -15,9 +16,12 @@ describe LinkedList do
     end
 
     describe "#append" do
+        list = LinkedList.new
+
         it "Adds a Node object to the end of LinkedList" do
             list.append("doop")
             list.append("woop")
+    
 
             expect(list.head.data).to eq("doop")
             expect(list.head.next_node.next_node).to eq(nil)
@@ -25,12 +29,25 @@ describe LinkedList do
     end
 
     describe "#count" do
-        xit "can count the number of nodes in the list" do
-            expect(list.count).to eq
+        it "can count the number of nodes in the list" do
+            list = LinkedList.new
+
+            list.append("doop")
+            list.append("woop")
+
+            expect(list.count).to eq(2)
+        end
+
+        it "can returns 0 when there are no Nodes in the list" do
+            list = LinkedList.new
+
+            expect(list.count).to eq(0)
         end
     end
 
     describe "#to_string" do
+        list = LinkedList.new
+
         xit "combine nodes to form 1 string" do
             expect(list.to_string).to eq("doop")
         end

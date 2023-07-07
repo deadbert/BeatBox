@@ -26,8 +26,24 @@ class LinkedList
     end
 
     def count
-        counter = 0
+        count = @head == nil ? (return 0) : 1
+        current_node = @head
+        until current_node.next_node == nil do
+            current_node = current_node.next_node
+            count += 1
+        end
+        count
+    end
 
+    def to_string
+        output_list = ""
+        current_node = @head
+        # method gets hung up here right now when entering
+        # the while loop. 
+        until current_node.next_node == nil do
+            output_list << current_node.data
+        end
+        output_list << current_node.data
     end
 
 end
