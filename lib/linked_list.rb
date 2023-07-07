@@ -88,4 +88,16 @@ class LinkedList
         end
         output.strip
     end
+
+    def includes?(data)
+        return "No elements in list" if @head == nil
+        current_node = @head
+        until current_node.next_node == nil do
+            if current_node.data == data
+                return true
+            end
+            current_node = current_node.next_node
+        end
+        current_node.data == data ? true : false
+    end
 end 

@@ -134,4 +134,28 @@ describe LinkedList do
             expect(list.find(3, 1)).to eq("Index out of range")
         end 
     end 
+
+    describe "#includes?" do
+        it "returns true if provided data exists in the list else false" do
+            list = LinkedList.new
+
+            list.append("deep")
+            list.append("woo")
+            list.append("shi")
+            list.append("shu")
+            list.append("blop")
+            
+            expect(list.includes?("deep")).to eq(true)
+            expect(list.includes?("dep")).to eq(false)
+        end
+
+        it "can return true if searched data point is tail of list" do
+            list = LinkedList.new
+
+            list.append("deep")
+            list.append("woo")
+
+            expect(list.includes?("woo")).to eq(true)
+        end
+    end
 end
