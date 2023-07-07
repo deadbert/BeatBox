@@ -35,5 +35,13 @@ describe BeatBox do
       expect(bb.list.count).to eq(6)
       bb.play
     end
+
+    it "can validate data and only select accepted words" do
+      bb = BeatBox.new
+
+      bb.append("mississipi mississipi mississipi mississipi mississipi mississipi")
+
+      expect(bb.count).to eq(0)
+    end
   end
 end

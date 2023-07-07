@@ -5,11 +5,13 @@ class BeatBox
   attr_accessor :list
   def initialize
     @list = LinkedList.new
+    @ok_words = ["tee", "dee", "deep", "bop", "boop", "la", "na",
+                 "shu", "woo", "ditt", "doo", "hoo", "tee", "wee"]
   end
 
   def append(words)
-    word_split = words.split
-    word_split.each do |word|
+    words = validate_input(words)
+    words.each do |word|
       new_node = Node.new(word)
       @list.append(new_node.data)
     end
@@ -23,4 +25,14 @@ class BeatBox
     beats = @list.to_string
     `say -r 500 -v Boing "#{beats}"`
   end
+
+  def validate_input(string)
+    words = string.split
+    validated_words = []
+    words.select do |word|
+      validated_words << word if @ok_words.include?(word)
+    end
+    validated_words
+  end
+
 end
