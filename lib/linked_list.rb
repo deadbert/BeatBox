@@ -8,13 +8,13 @@ class LinkedList
     end
 
     def append(data)
-        new_node = Node.new(data)
-        @head == nil ? (return @head = new_node) : @head = @head
-        tail_node = search_nodes
-        tail_node.next_node = new_node
+        new_node = Node.new(data) #initialize a new node from passed in data
+        @head == nil ? (return @head = new_node) : @head = @head #will set @head = new node unless a node exists @head already
+        tail_node = search_nodes #method call returns the tail node
+        tail_node.next_node = new_node  #set tail node .next_node value = to the new node
     end
 
-    def search_nodes
+    def search_nodes #linear search through the list, returning the last node in the list with nil .next_node value
         current_node = @head
         until current_node.next_node == nil do
             current_node = current_node.next_node
@@ -22,10 +22,10 @@ class LinkedList
         current_node
     end
 
-    def count
-        count = @head == nil ? (return 0): 1
+    def count #modified search node method with a counter, returns counter instead of final node in list
+        count = @head == nil ? (return 0): 1 #returns 0 if no head node, or sets counter to 1 at start
         current_node = @head
-        until current_node.next_node == nil do
+        until current_node.next_node == nil do #iterate through list, add 1 to count each iteration to count nodes
             current_node = current_node.next_node
             count += 1
         end
@@ -39,73 +39,77 @@ class LinkedList
             output_list << current_node.data + " "
             current_node = current_node.next_node
         end
-        output_list << current_node.data
+        #until loop will stop at last node, and not add the last node of data.
+        # this line adds last node of data to the output string
+        output_list << current_node.data 
     end
 
-    def prepend(data)
+    def prepend(data) #add new node to at the @head of the list
         new_node = Node.new(data)
-        new_node.next_node = @head
-        @head = new_node
+        new_node.next_node = @head #point new node to the current head node
+        @head = new_node 
     end
 
     def insert(index, data)
         new_node = Node.new(data)
-        if @head == nil && index == 0
+        if @head == nil && index == 0 
             return @head = new_node
-        elsif (@head.is_a? Node) && (index < count)
+        elsif (@head.is_a? Node) && (index < count) #check to ensure the given index isn't out range
             current_node = @head
             iter_count = 0
-            until (index - 1) == iter_count do
+            index -= 1 #decrement index by 1 so I stop 1 Node early in list
+            until (index) == iter_count do
                 current_node = current_node.next_node
                 iter_count += 1
             end
-            new_node.next_node = current_node.next_node
+            new_node.next_node = current_node.next_node #stop 1 node early to set the .next_node correctly
             current_node.next_node = new_node
         else
             "Index out of range"
         end
     end
 
-    def find(index, num_nodes)
-        return "No elements in list" if @head == nil
-        return "Index out of range" if count < index
+    def find(index, num_nodes) #starting at given index, return num_nodes EX: (1,3) returns node 2,3,4
+        return "No elements in list" if @head == nil #catch case of find called on empty list
+        return "Index out of range" if count < index #catch case of index being out of list range
         current_node = @head
         count = 0
-        element_count = 0
+        element_count = 0 #this variable is for counting the num_nodes argument once index is found
         output = ""
         until index == count do
             current_node = current_node.next_node
             count += 1
         end
-        until num_nodes == element_count
+        until num_nodes == element_count #new loop once index is found to return num_nodes
             output << current_node.data + " "
             current_node = current_node.next_node
             element_count += 1
         end
-        output.strip
+        output.strip #remove trailing " " from how node data is added to output
     end
 
-    def includes?(data)
-        return "No elements in list" if @head == nil
+    def includes?(data) #return bool: true if data is in list
+        return "No elements in list" if @head == nil #catch case of includes? called on empty list
         current_node = @head
-        until current_node.next_node == nil do
-            if current_node.data == data
+        until current_node.next_node == nil do 
+            if current_node.data == data #iterate through nodes, if ANY node matches true is returned
                 return true
             end
             current_node = current_node.next_node
         end
-        current_node.data == data ? true : false
+        current_node.data == data ? true : false #loop stops on last node, so perform check on last node data
     end
 
-    def pop
-        return "No elements in list" if @head == nil
+    def pop #remove last node in the list
+        return "No elements in list" if @head == nil #catch if pop called on empty list
         current_node = @head
-        list_count = count
+        list_count = count #calls count method to find total length of list
+        list_count -= 2 #decrement list count so I stop on the node BEFORE last node
         current_index = 0
-        until current_index == (list_count - 2) do 
+        until current_index == (list_count) do 
             current_node = current_node.next_node
             current_index += 1
         end
-        current_node.next_node = nil
+        current_node.next_node = nil #Set next_node of second to last node to nil, removing last node
     end
 end 
