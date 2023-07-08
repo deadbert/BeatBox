@@ -9,12 +9,9 @@ class LinkedList
 
     def append(data)
         new_node = Node.new(data)
-        if @head == nil
-            @head = new_node
-        elsif @head.is_a? Node
-            tail_node = search_nodes
-            tail_node.next_node = new_node
-        end
+        @head == nil ? (return @head = new_node) : @head = @head
+        tail_node = search_nodes
+        tail_node.next_node = new_node
     end
 
     def search_nodes
@@ -37,8 +34,7 @@ class LinkedList
 
     def to_string
         output_list = ""
-        current_node = @head
-        return "" if current_node == nil
+        @head == nil ? (return "") : current_node = @head
         until current_node.next_node == nil do
             output_list << current_node.data + " "
             current_node = current_node.next_node
