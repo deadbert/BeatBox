@@ -52,12 +52,12 @@ class LinkedList
         new_node = Node.new(data)
         if @head == nil && index == 0
             return @head = new_node
-        elsif @head.is_a? Node
+        elsif (@head.is_a? Node) && (index < count)
             current_node = @head
-            count = 0
-            until (index - 1) == count do
+            iter_count = 0
+            until (index - 1) == iter_count do
                 current_node = current_node.next_node
-                count += 1
+                iter_count += 1
             end
             new_node.next_node = current_node.next_node
             current_node.next_node = new_node
