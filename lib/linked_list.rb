@@ -18,7 +18,7 @@ class LinkedList
     end
 
     def count #modified search node method with a counter, returns counter instead of final node in list
-        count = @head == nil ? (return 0): 1 #returns 0 if no head node, or sets counter to 1 at start
+        count = @head == nil ? (return 0): 1 #returns 0 if no head node, or sets counter to 1 at start 
         current_node = @head
         until current_node.next_node == nil do #iterate through list, add 1 to count each iteration to count nodes
             current_node = current_node.next_node
@@ -49,7 +49,7 @@ class LinkedList
         new_node = Node.new(data)
         if @head == nil && index == 0 
             return @head = new_node
-        elsif (@head.is_a? Node) && (index < count) #check to ensure the given index isn't out range
+        elsif (@head.is_a? Node) && (index < self.count) #check to ensure the given index isn't out range
             current_node = @head
             iter_count = 0
             index -= 1 #decrement index by 1 so I stop 1 Node early in list
@@ -66,14 +66,14 @@ class LinkedList
 
     def find(index, num_nodes) #starting at given index, return num_nodes EX: (1,3) returns node 2,3,4
         return "No elements in list" if @head == nil #catch case of find called on empty list
-        return "Index out of range" if count < index #catch case of index being out of list range
+        return "Index out of range" if self.count < index #catch case of index being out of list range
         current_node = @head
-        count = 0
+        counter = 0
         element_count = 0 #this variable is for counting the num_nodes argument once index is found
         output = ""
-        until index == count do
+        until index == counter do
             current_node = current_node.next_node
-            count += 1
+            counter += 1
         end
         until num_nodes == element_count #new loop once index is found to return num_nodes
             output << current_node.data + " "
