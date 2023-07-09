@@ -10,16 +10,11 @@ class LinkedList
     def append(data)
         new_node = Node.new(data) #initialize a new node from passed in data
         @head == nil ? (return @head = new_node) : @head = @head #will set @head = new node unless a node exists @head already
-        tail_node = search_nodes #method call returns the tail node
-        tail_node.next_node = new_node  #set tail node .next_node value = to the new node
-    end
-
-    def search_nodes #linear search through the list, returning the last node in the list with nil .next_node value
         current_node = @head
-        until current_node.next_node == nil do
+        while current_node.next_node != nil do
             current_node = current_node.next_node
         end
-        current_node
+        current_node.next_node = new_node
     end
 
     def count #modified search node method with a counter, returns counter instead of final node in list
@@ -34,7 +29,7 @@ class LinkedList
 
     def to_string
         output_list = ""
-        @head == nil ? (return "") : current_node = @head
+        @head == nil ? (return "") : current_node = @head #if list empty returns "" otherwise selects head to start loop
         until current_node.next_node == nil do
             output_list << current_node.data + " "
             current_node = current_node.next_node
