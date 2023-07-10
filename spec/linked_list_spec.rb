@@ -103,8 +103,10 @@ describe LinkedList do
 
         it "can recognize when #insert index is out of range" do
             list =LinkedList.new
+            list.append('woo')
 
-            expect(list.insert(3, "woo")).to eq("Index out of range")
+            expect(list.insert(1, "woo")).to eq("Index out of range")
+            expect(list.insert(1, "woo")).to eq("Index out of range")
         end
     end
 

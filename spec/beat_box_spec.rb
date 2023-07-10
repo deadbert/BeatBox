@@ -35,5 +35,27 @@ describe BeatBox do
       expect(bb.list.count).to eq(6)
       bb.play
     end
+
+    it "can validate data and only select accepted words" do
+      bb = BeatBox.new
+
+      bb.append("mississipi mississipi mississipi mississipi mississipi mississipi")
+
+      expect(bb.count).to eq(0)
+    end
+
+    it "can change the rate and voice the sound plays" do
+      bb = BeatBox.new
+
+      bb.append("deep dop dop deep")
+      bb.play
+      bb.rate = 100
+      bb.play
+      bb.voice = "Daniel"
+      bb.play
+      bb.reset_rate
+      bb.reset_voice
+      bb.play
+    end
   end
 end
