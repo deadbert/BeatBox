@@ -19,14 +19,20 @@ while on do
   if input == 'set speed'
     puts "type desired speed as integer or 'reset' to set default"
     speed = gets.chomp
-    bb.reset_rate if speed == 'reset'
-    bb.rate = speed
+    if speed == 'reset'
+      bb.reset_rate
+    else
+      bb.rate = speed
+    end
   elsif input == 'set voice'
     puts "type desired voice or 'reset' to set to default"
     puts "accepted voices: Daniel, Samantha, Fred, Boing"
     voice = gets.chomp
-    bb.reset_voice if voice == 'reset'
-    bb.voice = voice
+    if voice == 'reset'
+      bb.reset_voice
+    else
+      bb.voice = voice
+    end
   elsif input == 'add beats'
     puts "Type the words you want beat boxed"
     puts "accepted words: tee, dee, deep, bop, boop, la, na,
