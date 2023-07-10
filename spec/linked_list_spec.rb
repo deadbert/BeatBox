@@ -71,4 +71,67 @@ describe LinkedList do
             expect(list.to_string).to eq ("doop")
         end
     end
+
+    describe "#prepend" do
+        it "Add node to the beginning of the list" do
+            list = LinkedList.new
+
+            list.append("plop")
+            expect(list.to_string).to eq("plop")
+            list.append("suu")
+            expect(list.to_string).to eq("plop suu")
+            list.prepend("dop")
+            expect(list.to_string).to eq("dop plop suu")
+            expect(list.count).to eq(3)
+        end
+    end
+
+    describe "#insert" do
+        it "can insert node at given index" do
+            list = LinkedList.new
+
+            list.append("plop")
+            expect(list.to_string).to eq("plop")
+            list.append("suu")
+            expect(list.to_string).to eq("plop suu")
+            list.prepend("dop")
+            expect(list.to_string).to eq("dop plop suu")
+            expect(list.count).to eq(3)
+            list.insert(1, "woo")
+            expect(list.to_string).to eq("dop woo plop suu")
+        end
+
+        it "can recognize when #insert index is out of range" do
+            list =LinkedList.new
+
+            expect(list.insert(3, "woo")).to eq("Index out of range")
+        end
+    end
+
+    describe "#find" do
+        it "return the data from Node at index(x) and (y) nodes after" do
+            list = LinkedList.new
+
+            list.append("deep")
+            list.append("woo")
+            list.append("shi")
+            list.append("shu")
+            list.append("blop")
+            
+            expect(list.find(2, 1)).to eq("shi")
+            expect(list.find(1, 3)).to eq("woo shi shu")
+        end 
+
+        it "returns No elements in list when find called on empty list" do
+            list = LinkedList.new
+
+            expect(list.find(1,2)).to eq("No elements in list")
+        end
+        it "returns error when index out of range" do
+            list = LinkedList.new
+            list.append("deep")
+
+            expect(list.find(3, 1)).to eq("Index out of range")
+        end 
+    end 
 end

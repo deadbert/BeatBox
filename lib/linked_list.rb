@@ -46,4 +46,46 @@ class LinkedList
         output_list << current_node.data
     end
 
-end
+    def prepend(data)
+        new_node = Node.new(data)
+        new_node.next_node = @head
+        @head = new_node
+    end
+
+    def insert(index, data)
+        new_node = Node.new(data)
+        if @head == nil && index == 0
+            return @head = new_node
+        elsif @head.is_a? Node
+            current_node = @head
+            count = 0
+            until (index - 1) == count do
+                current_node = current_node.next_node
+                count += 1
+            end
+            new_node.next_node = current_node.next_node
+            current_node.next_node = new_node
+        else
+            "Index out of range"
+        end
+    end
+
+    def find(index, num_nodes)
+        return "No elements in list" if @head == nil
+        return "Index out of range" if count < index
+        current_node = @head
+        count = 0
+        element_count = 0
+        output = ""
+        until index == count do
+            current_node = current_node.next_node
+            count += 1
+        end
+        until num_nodes == element_count
+            output << current_node.data + " "
+            current_node = current_node.next_node
+            element_count += 1
+        end
+        output.strip
+    end
+end 
