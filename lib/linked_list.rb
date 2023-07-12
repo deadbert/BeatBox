@@ -9,7 +9,9 @@ class LinkedList
 
   def append(data)
     new_node = Node.new(data) #initialize a new node from passed in data
-    @head == nil ? (return @head = new_node) : @head = @head #will set @head = new node unless a node exists @head already
+    if @head == nil
+      return @head = new_node
+    end
     current_node = @head
     while current_node.next_node != nil do
       current_node = current_node.next_node
