@@ -50,15 +50,9 @@ class LinkedList
     if @head == nil && index == 0 
       return @head = new_node
     elsif (@head.is_a? Node) && (index < self.count) #check to ensure the given index isn't out range
-      current_node = @head
       iter_count = 0
       index -= 1 #decrement index by 1 so I stop 1 Node early in list
-      until (index) == iter_count do
-        current_node = current_node.next_node
-        iter_count += 1
-      end
-      new_node.next_node = current_node.next_node #stop 1 node early to set the .next_node correctly
-      current_node.next_node = new_node
+      insert_search_replace(index, iter_count, new_node) #searches and inserts new node at given index
     else
       "Index out of range"
     end
@@ -69,18 +63,7 @@ class LinkedList
     return "Index out of range" if self.count < index #catch case of index being out of list range
     current_node = @head
     counter = 0
-    element_count = 0 #this variable is for counting the num_nodes argument once index is found
-    output = ""
-    until index == counter do
-      current_node = current_node.next_node
-      counter += 1
-    end
-    until num_nodes == element_count #new loop once index is found to return num_nodes
-      output << current_node.data + " "
-      current_node = current_node.next_node
-      element_count += 1
-    end
-    output.strip #remove trailing " " from how node data is added to output
+    find_search_replace(current_node, index, counter, num_nodes)
   end
 
   def includes?(data) #return bool: true if data is in list
@@ -106,6 +89,31 @@ class LinkedList
       current_index += 1
     end
     current_node.next_node = nil #Set next_node of second to last node to nil, removing last node
+  end
+
+  def insert_search_replace(index, iter_count, new_node)
+    current_node = @head
+    until (index) == iter_count do
+      current_node = current_node.next_node
+      iter_count += 1
+    end
+    new_node.next_node = current_node.next_node #stop 1 node early to set the .next_node correctly
+    current_node.next_node = new_node
+  end
+
+  def find_search_replace(current_node, index, counter, num_nodes)
+    output = ""
+    element_count = 0 #this variable is for counting the num_nodes argument once index is found
+    until index == counter do
+      current_node = current_node.next_node
+      counter += 1
+    end
+    until num_nodes == element_count #new loop once index is found to return num_nodes
+      output << current_node.data + " "
+      current_node = current_node.next_node
+      element_count += 1
+    end
+    output.strip #remove trailing " " from how node data is added to output
   end
   
 end 
