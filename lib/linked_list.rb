@@ -10,7 +10,8 @@ class LinkedList
   def append(data)
     new_node = Node.new(data) #initialize a new node from passed in data
     if @head == nil
-      return @head = new_node
+      @head = new_node
+      return @head
     end
     current_node = @head
     while current_node.next_node != nil do
@@ -95,7 +96,7 @@ class LinkedList
 
   def insert_search_replace(index, iter_count, new_node)
     current_node = @head
-    until (index) == iter_count do
+    until index == iter_count do
       current_node = current_node.next_node
       iter_count += 1
     end
@@ -115,7 +116,8 @@ class LinkedList
       current_node = current_node.next_node
       element_count += 1
     end
-    output.strip #remove trailing " " from how node data is added to output
+    output.strip! #remove trailing " " from how node data is added to output
+    return output
   end
   
 end 
